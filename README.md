@@ -1,11 +1,28 @@
 # subdomain-router
 
-A tool for routing HTTP traffic to and from predefined ports based on the subdomain of the request. This is sometimes known as a "reverse proxy".
+A tool for routing HTTP traffic to and from predefined ports based on the subdomain of the request. This is sometimes known as a "reverse proxy". Headers, routes, HTTP method, etc. are all preserved.
 
 ### Installation
 
 ```sh
 $ npm install subdomain-router
+```
+
+### Quick Start
+
+```javascript
+var proxy = require('subdomain-router');
+
+// Assuming 'example.com' and '*.example.com' point to this computer
+proxy({
+  host: 'example.com',
+  subdomains: {
+    '': 10000,             // 'example.com'             <=> localhost:10000
+    www: 10000,            // 'www.example.com'         <=> localhost:10000
+    blog: 10001,           // 'blog.example.com'        <=> localhost:10001
+    'hello.world': 10002   // 'hello.world.example.com' <=> localhost:10002 
+  }
+}).listen(80);
 ```
 
 ### Usage

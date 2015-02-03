@@ -1,6 +1,6 @@
 'use strict';
 
-var proxy = require('..');
+var proxy    = require('..');
 var testUtil = require('./testUtil');
 
 var hostBase = 'subdomain-router-test.com';
@@ -8,11 +8,11 @@ var hostBase = 'subdomain-router-test.com';
 // These hosts are added to the hosts file temporarily
 var hosts = [
   hostBase,
-  '.' + hostBase,
-  'a.' + hostBase,
-  'b.' + hostBase,
-  'c.' + hostBase,
-  'd.' + hostBase,
+  '.'      + hostBase,
+  'a.'     + hostBase,
+  'b.'     + hostBase,
+  'c.'     + hostBase,
+  'd.'     + hostBase,
   'd.e.f.' + hostBase
 ];
 
@@ -37,11 +37,11 @@ describe('subdomain-router', function () {
       proxyServer = proxy({
         host: hostBase,
         subdomains: {
-          '':  10000,
-          'a': 10001,
-          'b': 10002,
+          '':      10000,
+          'a':     10001,
+          'b':     10002,
           // c purposefully not defined
-          'd': 10005,
+          'd':     10005,
           'd.e.f': 10004
         }
       });
@@ -107,10 +107,10 @@ describe('subdomain-router', function () {
       proxyServer = proxy({
         host: hostBase,
         messages: {
-          home: 'custom home message',
-          down: 'custom down message',
+          home:    'custom home message',
+          down:    'custom down message',
           invalid: 'custom invalid message',
-          error: 'custom error message'
+          error:   'custom error message'
         },
         subdomains: {
           'b': 10002,

@@ -1,9 +1,9 @@
 'use strict';
 
-var net = require('net');
-var http = require('http');
-var exec = require('child_process').exec;
-var assert = require('assert');
+var net     = require('net');
+var http    = require('http');
+var exec    = require('child_process').exec;
+var assert  = require('assert');
 var request = require('request');
 
 var addHostsFileEntries = exports.addHostsFileEntries = function (hosts, done) {

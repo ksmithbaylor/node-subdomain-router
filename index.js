@@ -3,10 +3,10 @@
 var http = require('http');
 var util = require('./util');
 
-var DEFAULT_HOME_MESSAGE = 'This is the home page.';
-var DEFAULT_DOWN_MESSAGE = 'There is usually something here, but it is down right now.';
+var DEFAULT_HOME_MESSAGE    = 'This is the home page.';
+var DEFAULT_DOWN_MESSAGE    = 'There is usually something here, but it is down right now.';
 var DEFAULT_INVALID_MESSAGE = 'There is nothing running here.';
-var DEFAULT_ERROR_MESSAGE = 'Server error.';
+var DEFAULT_ERROR_MESSAGE   = 'Server error.';
 
 /**
  * generateServer
@@ -57,9 +57,9 @@ module.exports = function generateServer(config) {
 
     // Craft the request to the actual service
     var proxyRequest = http.request({
-      port: targetPort,
-      method: req.method,
-      path: req.url,
+      port:    targetPort,
+      method:  req.method,
+      path:    req.url,
       headers: req.headers
     });
 

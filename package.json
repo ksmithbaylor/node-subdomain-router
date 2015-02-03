@@ -1,13 +1,14 @@
 {
   "name": "subdomain-router",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Routes incoming traffic to different ports based on subdomain",
   "repository": {
     "type": "git",
     "url": "https://github.com/ksmithbaylor/node-subdomain-router"
   },
   "bugs": {
-    "url": "https://github.com/ksmithbaylor/node-subdomain-router/issues"
+    "url": "https://github.com/ksmithbaylor/node-subdomain-router/issues",
+    "email": "ksmithbaylor@gmail.com"
   },
   "main": "index.js",
   "author": "Kevin Smith <ksmithbaylor@gmail.com> (kevinjs.com)",

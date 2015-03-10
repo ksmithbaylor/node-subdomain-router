@@ -75,6 +75,7 @@ module.exports = function generateServer(config) {
 
     // When the request returns a response, pipe it to the user
     proxyRequest.on('response', function(proxyResponse) {
+      res.writeHead(proxyResponse.statusCode, proxyResponse.headers);
       proxyResponse.pipe(res);
     });
 

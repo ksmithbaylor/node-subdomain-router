@@ -41,7 +41,7 @@ module.exports = function generateServer(config) {
 
   var requestHandler = function (req, res) {
     // Figure out where the request should go
-    var subdomain = util.parseSubdomain(config.host, req.headers['host']);
+    var subdomain = util.parseSubdomain(config.host, req.headers.host || '');
     var targetPort = config.subdomains[subdomain];
 
     // Handle edge cases

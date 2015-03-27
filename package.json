@@ -1,6 +1,6 @@
 {
   "name": "subdomain-router",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Routes incoming traffic to different ports based on subdomain",
   "repository": {
     "type": "git",
@@ -13,9 +13,6 @@
   "main": "index.js",
   "author": "Kevin Smith <ksmithbaylor@gmail.com> (kevinjs.com)",
   "license": "MIT",
-  "scripts": {
-    "test": "sudo mocha"
-  },
   "keywords": [
     "subdomain", "subdomains", "reverse", "proxy", "reverse-proxy", "heroku", "mini-heroku"
   ],

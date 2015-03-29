@@ -42,6 +42,29 @@ var assertResponse = exports.assertResponse = function (url, text, done) {
   });
 };
 
+var assertMissingHostResponse = exports.assertMissingHostResponse = function (url, text, done) {
+  var options = {
+    host: url,
+    path: '/',
+    method: 'GET',
+    port: 80,
+    headers: {
+      'Host': ''
+    }
+  };
+
+  var req = http.request(options, function (res) {
+    var body = '';
+    res.on('data', function (chunk) { body += chunk });
+    res.on('end', function () {
+      assert.equal(body, text + '\n');
+      done();
+    })
+  });
+
+  req.end();
+}
+
 var server1, server2, server3;
 var startServers = exports.startServers = function (done) {
   server1 = simpleServer('home page').listen(10000, function() {

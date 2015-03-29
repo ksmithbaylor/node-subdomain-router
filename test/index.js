@@ -81,6 +81,10 @@ describe('subdomain-router', function () {
     it('should respond for multiple subdomains', function (done) {
       testUtil.assertResponse('d.e.f.' + hostBase, 'server d.e.f', done);
     });
+
+    it('should hit the home page for a missing Host header', function (done) {
+      testUtil.assertMissingHostResponse(hostBase, 'home page', done);
+    });
   });
 
   describe('no subdomain config', function () {

@@ -78,6 +78,11 @@ module.exports = function generateServer(config) {
       res.writeHead(proxyResponse.statusCode, proxyResponse.headers);
       proxyResponse.pipe(res);
     });
+    
+    // propagate request cancellation
+    res.on('close', function() {
+      proxyRequest.abort();
+    });
 
     // Open the floodgates!
     req.pipe(proxyRequest);

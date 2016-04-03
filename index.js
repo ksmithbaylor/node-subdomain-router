@@ -29,6 +29,9 @@ var DEFAULT_ERROR_MESSAGE   = 'Server error.';
  *   }
  *   subdomains (optional): An object mapping subdomains to ports. Use ''
  *                          to indicate the home page port.
+ *   fallbackPort (optional): If specified, requests targeting a subdomain
+ *                            not present in the domain mapping will be
+ *                            routed to the fallback port.
  */
 module.exports = function generateServer(config) {
 
@@ -46,13 +49,18 @@ module.exports = function generateServer(config) {
 
     // Handle edge cases
     if (!targetPort) { // If there is no target port
-      if (subdomain === '') { // ...and the user requested the home page
-        util.sendResponse(res, 200, config.messages.home);
-      } else { // ...and the user requested an invalid subdomain
-        util.sendResponse(res, 400, config.messages.invalid);
+      if(typeof config.fallbackPort === "number") {
+        targetPort = config.fallbackPort; // ...we have a fallback port
       }
+      else {
+        if (subdomain === '') { // ...and the user requested the home page
+          util.sendResponse(res, 200, config.messages.home);
+        } else { // ...and the user requested an invalid subdomain
+          util.sendResponse(res, 400, config.messages.invalid);
+        }
 
-      return;
+        return;
+      }
     }
 
     // Craft the request to the actual service
@@ -78,7 +86,8 @@ module.exports = function generateServer(config) {
       res.writeHead(proxyResponse.statusCode, proxyResponse.headers);
       proxyResponse.pipe(res);
     });
-    
+
+
     // propagate request cancellation
     res.on('close', function() {
       proxyRequest.abort();
